@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="KAIFIK — портфолио: карточки товаров, рекламные листовки, веб-дизайн и разработка." />
+  <meta name="theme-color" content="#f6f4ef" />
+  <title>KAIFIK — Дизайн и разработка</title>
+  <style>
+    :root{--bg:#f6f4ef;--ink:#20221f;--muted:#666961;--accent:#ec653f;--line:#dddcd5;--cream:#ece8df;--dark:#252826;--w:1160px}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,'Segoe UI',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}button{font:inherit}img{display:block;max-width:100%}
+    .container{width:min(var(--w),calc(100% - 64px));margin:auto}
+    .topbar{height:80px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+    .brand{font-size:26px;font-weight:850;letter-spacing:-1.6px}.brand b{color:var(--accent)}
+    .nav{display:flex;gap:32px;align-items:center}.nav a{font-size:14px;font-weight:650;transition:color .2s}.nav a:hover{color:var(--accent)}
+    .nav a:last-child{padding:10px 17px;border:1px solid #a4a49d;border-radius:999px}
+    .hero{padding:92px 0 78px;position:relative}
+    .eyebrow{display:flex;align-items:center;gap:12px;text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:760;color:#77776e}
+    .eyebrow:before{content:'';width:27px;height:3px;background:var(--accent)}
+    h1{font-size:clamp(48px,7.4vw,100px);letter-spacing:-.08em;line-height:1.04;max-width:1050px;margin:26px 0 28px;font-weight:850}
+    .accent-word{color:var(--accent)}
+    .hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:20px}
+    .lead{color:#585b55;font-size:clamp(16px,2vw,20px);max-width:590px;line-height:1.55;margin:0}
+    .btn{display:inline-flex;gap:11px;align-items:center;justify-content:center;font-weight:750;font-size:14px;white-space:nowrap;border-radius:999px;border:0;padding:16px 22px;cursor:pointer;transition:transform .2s,background .2s}
+    .btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--ink);color:white}.btn-primary:hover{background:#373b36}
+    .arrow{font-size:20px;line-height:12px}
+    .strip{display:flex;justify-content:space-between;gap:10px;padding:22px 0 25px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:13px;color:#6f716b;letter-spacing:.3px}
+    .strip b{color:var(--ink)}
+    section{scroll-margin-top:25px}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin:88px 0 26px}
+    .section-head h2{font-size:clamp(33px,4.5vw,57px);letter-spacing:-.065em;line-height:1.1;margin:0}
+    .section-head p{max-width:330px;margin:0 0 4px;color:var(--muted);font-size:14px}
+    .filters{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:25px}
+    .filter{border:1px solid #cccac3;background:transparent;color:var(--ink);padding:10px 15px;border-radius:999px;font-size:13px;font-weight:700;cursor:pointer;transition:background .2s}
+    .filter:hover,.filter[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:white}
+    .works{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+    .work{background:#eeece6;border-radius:19px;overflow:hidden;min-width:0;transition:transform .25s,box-shadow .25s;border:1px solid #ece9e2;}
+    .work:hover{transform:translateY(-3px);box-shadow:0 17px 28px rgba(38,35,28,.07)}
+    .work-media{height:480px;display:flex;align-items:center;justify-content:center;background:#e5e1d8;overflow:hidden;position:relative;cursor:zoom-in;border:0;width:100%;padding:20px}
+    .work-media img{height:100%;width:100%;object-fit:contain;filter:drop-shadow(0 10px 12px rgba(28,24,18,.14))}
+    .work-media .zoom{position:absolute;bottom:17px;right:17px;width:38px;height:38px;display:grid;place-items:center;background:rgba(255,255,255,.92);border-radius:50%;font-size:18px;opacity:0;transition:opacity .2s}
+    .work-media:hover .zoom,.work-media:focus-visible .zoom{opacity:1}
+    .work-caption{background:#eeece6;display:flex;align-items:flex-start;justify-content:space-between;gap:15px;padding:21px 22px 23px}
+    .work h3{margin:0 0 4px;font-size:20px;letter-spacing:-.5px;line-height:1.25}
+    .work p{font-size:13px;line-height:1.4;color:#75736d;margin:0}
+    .num{font-size:12px;font-weight:750;color:#87857e}
+    .work-featured{grid-column:1/-1;display:grid;grid-template-columns:.83fr 1fr;min-height:520px;background:#e8e5dc}
+    .work-featured .featured-copy{padding:clamp(26px,4vw,58px);display:flex;flex-direction:column;justify-content:space-between}
+    .feature-label{font-size:12px;font-weight:750;letter-spacing:1.5px;color:#8a6a5d;text-transform:uppercase}
+    .work-featured .big{font-size:clamp(32px,4vw,56px);line-height:1.07;letter-spacing:-.055em;margin:14px 0 20px}
+    .work-featured .desc{font-size:15px;max-width:340px;color:var(--muted)}
+    .work-featured .work-media{height:auto;min-height:520px;background:#e5e0d6}
+    .work-featured .work-media img{filter:drop-shadow(0 12px 18px rgba(31,24,18,.15))}
+    .big-num{font-size:14px;color:#918b80;font-weight:650}
+    .skills-wrap{margin:104px 0 0;background:var(--dark);border-radius:24px;color:white;padding:clamp(25px,5vw,62px)}
+    .skills-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:45px}
+    .skills-wrap h2{font-size:clamp(32px,4vw,54px);line-height:1.1;letter-spacing:-.06em;margin:17px 0 15px}
+    .skills-wrap p{max-width:480px;color:#c6c6c0;margin:0;font-size:15px}
+    .pills{display:flex;flex-wrap:wrap;align-content:center;gap:10px}
+    .pill{border:1px solid #626660;border-radius:999px;padding:11px 16px;font-weight:650;font-size:14px}
+    .skills-note{font-size:12px!important;margin-top:22px!important;color:#a9aea7!important}
+    .about{margin:103px 0 96px;display:grid;grid-template-columns:.8fr 1.2fr;gap:55px;align-items:start}
+    .about h2{font-size:clamp(34px,4vw,58px);line-height:1.05;letter-spacing:-.06em;margin:0}
+    .about-copy{color:#555950;font-size:18px;max-width:670px;margin-top:0}
+    .about-copy strong{color:var(--ink)}
+    .foot{background:#e9e5db;padding:45px 0 29px;margin-top:30px}
+    .foot-inner{display:flex;gap:40px;justify-content:space-between;align-items:center}
+    .foot h2{font-size:clamp(28px,4vw,50px);letter-spacing:-.06em;line-height:1.1;margin:9px 0}
+    .foot p{color:#6e7069;font-size:14px;margin:8px 0 0}
+    .foot .btn{background:var(--accent);color:#fff}
+    .legal{display:flex;justify-content:space-between;align-items:center;padding-top:26px;margin-top:46px;border-top:1px solid #d2cfc6;font-size:12px;color:#8c8d85}
+    dialog{max-width:none;max-height:none;margin:0;padding:0;border:0;background:rgba(22,24,21,.97);color:white;position:fixed;inset:0;width:100vw;height:100dvh}
+    dialog::backdrop{background:rgba(0,0,0,.85)}
+    .viewer{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative;padding:64px 55px 72px}
+    .viewer img{max-height:100%;max-width:100%;object-fit:contain;box-shadow:0 12px 40px rgba(0,0,0,.18)}
+    .viewer-close,.viewer-nav{position:absolute;border:1px solid #636762;color:white;background:#323832b8;border-radius:50%;height:43px;width:43px;cursor:pointer;font-size:25px;display:grid;place-items:center}
+    .viewer-close{right:20px;top:18px}.viewer-nav.prev{left:13px;top:50%}.viewer-nav.next{right:13px;top:50%}
+    .viewer-label{position:absolute;bottom:21px;left:50%;transform:translateX(-50%);font-size:13px;white-space:nowrap;color:#c9ccc9}
+    .work[hidden]{display:none!important}
+    @media(max-width:800px){.container{width:min(var(--w),calc(100% - 36px))}.hero{padding:58px 0}.hero-bottom{align-items:start;flex-direction:column}.nav{gap:16px}.nav a:nth-child(2){display:none}.strip{flex-wrap:wrap;gap:12px}.section-head{align-items:start;flex-direction:column}.work-featured{grid-template-columns:1fr;min-height:0}.work-featured .featured-copy{gap:20px}.work-featured .work-media{height:450px;min-height:0}.skills-grid{grid-template-columns:1fr;gap:25px}.about{grid-template-columns:1fr;gap:20px}}
+    @media(max-width:560px){.topbar{height:69px}.brand{font-size:23px}.nav{gap:10px}.nav a{font-size:12px}.nav a:first-child{display:none}.nav a:last-child{padding:8px 11px}.hero{padding:46px 0}.hero h1{font-size:clamp(42px,11vw,64px);letter-spacing:-.065em}.section-head{margin-top:60px}.works{grid-template-columns:1fr;gap:16px}.work-featured{grid-column:auto}.work-media,.work-featured .work-media{height:420px}.work-media{padding:17px}.work-caption{padding:18px}.work h3{font-size:19px}.skills-wrap{margin-top:66px;border-radius:18px}.about{margin:74px 0}.foot-inner{align-items:start;flex-direction:column}.legal{gap:10px;align-items:start;flex-direction:column}.viewer{padding:75px 42px}.viewer-nav.prev{left:3px}.viewer-nav.next{right:3px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="KAIFIK — на главную">kaifik<b>.</b></a>
+      <nav class="nav" aria-label="Главное меню">
+        <a href="#projects">Работы</a>
+        <a href="#skills">Навыки</a>
+        <a href="#about">Обо мне</a>
+        <a href="#contact">Контакты ↗</a>
+      </nav>
+    </header>
+    <main id="top">
+      <section class="hero" aria-labelledby="main-title">
+        <div class="eyebrow">Портфолио / Дизайн и разработка</div>
+        <h1 id="main-title">Идеи, которые<br /><span class="accent-word">выделяются.</span></h1>
+        <div class="hero-bottom">
+          <p class="lead">Создаю карточки товаров, рекламные материалы и аккуратные интерфейсы. Люблю сочетать выразительный дизайн и работающий код.</p>
+          <a class="btn btn-primary" href="#projects">Смотреть проекты <span class="arrow">↗</span></a>
+        </div>
+      </section>
+      <div class="strip" aria-label="Направления работы">
+        <span><b>01 /</b> Карточки товаров</span><span><b>02 /</b> Рекламный дизайн</span><span><b>03 /</b> Сайты и автоматизация</span>
+      </div>
+      <section id="projects" aria-labelledby="works-title">
+        <div class="section-head"><h2 id="works-title">Избранные работы<span class="accent-word">.</span></h2><p>Пять проектов в разных стилях. Нажми на изображение, чтобы рассмотреть детали.</p></div>
+        <div class="filters" role="group" aria-label="Фильтр проектов">
+          <button class="filter" data-filter="all" aria-pressed="true">Все проекты <span aria-hidden="true">· 5</span></button>
+          <button class="filter" data-filter="cards" aria-pressed="false">Карточки товаров</button>
+          <button class="filter" data-filter="flyers" aria-pressed="false">Листовки и каталоги</button>
+        </div>
+        <div class="works" id="works-grid">
+          <article class="work work-featured" data-category="cards">
+            <div class="featured-copy"><div><div class="feature-label">Карточка товара · Демонстрационный проект</div><h3 class="big">Беспроводные<br />наушники</h3><p class="desc">Теплая палитра с оранжевыми акцентами, крупный продукт и лаконичная инфографика.</p></div><div class="big-num">01 / 05</div></div>
+            <button class="work-media" data-image="headphones.jpg" data-label="Беспроводные наушники" aria-label="Открыть карточку наушников"><img src="headphones.jpg" alt="Беспроводные наушники на каменной платформе, карточка товара в бежево-оранжевых тонах" decoding="async" fetchpriority="high"/><span class="zoom" aria-hidden="true">↗</span></button>
+          </article>
+          <article class="work" data-category="cards">
+            <button class="work-media" data-image="mug.jpg" data-label="Термокружка" aria-label="Открыть карточку термокружки"><img src="mug.jpg" alt="Рекламная карточка термокружки на фоне гор, с оранжевыми акцентами" loading="lazy" decoding="async"/><span class="zoom" aria-hidden="true">↗</span></button>
+            <div class="work-caption"><div><h3>Термокружка</h3><p>Карточка товара · Демонстрационный проект</p></div><div class="num">02</div></div>
+          </article>
+          <article class="work" data-category="cards">
+            <button class="work-media" data-image="knife.jpg" data-label="Складной нож" aria-label="Открыть карточку складного ножа"><img src="knife.jpg" alt="Зеленая карточка товара со складным ножом и иконками преимуществ" loading="lazy" decoding="async"/><span class="zoom" aria-hidden="true">↗</span></button>
+            <div class="work-caption"><div><h3>Складной нож</h3><p>Карточка товара · Демонстрационный проект</p></div><div class="num">03</div></div>
+          </article>
+          <article class="work" data-category="flyers">
+            <button class="work-media" data-image="dunaiskaya.jpg" data-label="Фабрика качества — Дунайская" aria-label="Открыть листовку Дунайская"><img src="dunaiskaya.jpg" alt="Рекламная листовка Фабрики качества с акционной колбасой Дунайская" loading="lazy" decoding="async"/><span class="zoom" aria-hidden="true">↗</span></button>
+            <div class="work-caption"><div><h3>«Дунайская»</h3><p>Рекламная листовка · Продуктовая акция</p></div><div class="num">04</div></div>
+          </article>
+          <article class="work" data-category="flyers">
+            <button class="work-media" data-image="garibaldi.jpg" data-label="Garibaldi — каталог акций" aria-label="Открыть каталог Garibaldi"><img src="garibaldi.jpg" alt="Светлый двухколоночный акционный каталог Garibaldi с восемью продуктами" loading="lazy" decoding="async"/><span class="zoom" aria-hidden="true">↗</span></button>
+            <div class="work-caption"><div><h3>Garibaldi</h3><p>Акционный каталог · 8 товарных позиций</p></div><div class="num">05</div></div>
+          </article>
+        </div>
+      </section>
+      <section id="skills" class="skills-wrap" aria-labelledby="skills-title">
+        <div class="skills-grid">
+          <div><div class="eyebrow">Чем занимаюсь</div><h2 id="skills-title">Дизайн +<br />разработка.</h2><p>Помимо графики, работаю с фронтендом и Python. Примеры программных проектов добавлю по мере готовности.</p></div>
+          <div><div class="pills" aria-label="Навыки"><span class="pill">Figma</span><span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">JavaScript</span><span class="pill">Python</span><span class="pill">Карточки товаров</span><span class="pill">Рекламные макеты</span></div><p class="skills-note">В галерее сейчас представлены дизайнерские работы.</p></div>
+        </div>
+      </section>
+      <section id="about" class="about" aria-labelledby="about-title"><h2 id="about-title">Немного<br />обо мне<span class="accent-word">.</span></h2><div><p class="about-copy">Привет! Я занимаюсь графическим дизайном и программированием. Мне интересно делать визуально понятные, аккуратные работы — от одной карточки товара до целого сайта.</p><p class="about-copy">Здесь собраны <strong>мои демонстрационные проекты и рекламные макеты</strong>. Портфолио будет пополняться новыми сайтами и Python-проектами.</p></div></section>
+    </main>
+  </div>
+  <footer class="foot" id="contact"><div class="container"><div class="foot-inner"><div><div class="eyebrow">Контакты</div><h2>Есть идея? Обсудим<span class="accent-word">.</span></h2><p>Пока здесь ссылка на GitHub. Позже добавим Telegram или почту.</p></div><a class="btn" href="https://github.com/kaifikigor" target="_blank" rel="noopener noreferrer">Мой GitHub <span class="arrow">↗</span></a></div><div class="legal"><span>© 2026 KAIFIK — портфолио</span><span>Создано на HTML, CSS и JavaScript</span></div></div></footer>
+  <dialog id="lightbox" aria-label="Просмотр работы"><div class="viewer"><button class="viewer-close" aria-label="Закрыть">×</button><button class="viewer-nav prev" aria-label="Предыдущая работа">‹</button><img alt="" id="big-image"/><button class="viewer-nav next" aria-label="Следующая работа">›</button><div class="viewer-label" id="viewer-label"></div></div></dialog>
+  <script>
+    const filters = document.querySelectorAll('.filter');
+    const cards = document.querySelectorAll('.work');
+    const lightbox = document.getElementById('lightbox');
+    const bigImage = document.getElementById('big-image');
+    const viewerLabel = document.getElementById('viewer-label');
+    const media = Array.from(document.querySelectorAll('.work-media'));
+    let activeImage = 0;
+    filters.forEach(button => button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      filters.forEach(b => b.setAttribute('aria-pressed', b === button ? 'true' : 'false'));
+      cards.forEach(card => { card.hidden = filter !== 'all' && card.dataset.category !== filter; });
+    }));
+    function showImage(index) {
+      activeImage = (index + media.length) % media.length;
+      const selected = media[activeImage];
+      bigImage.src = selected.dataset.image;
+      bigImage.alt = selected.querySelector('img').alt;
+      viewerLabel.textContent = selected.dataset.label + ' · ' + (activeImage+1) + ' / ' + media.length;
+    }
+    media.forEach((btn,index) => btn.addEventListener('click',()=>{showImage(index); lightbox.showModal();}));
+    document.querySelector('.viewer-close').addEventListener('click',()=>lightbox.close());
+    document.querySelector('.viewer-nav.prev').addEventListener('click',()=>showImage(activeImage-1));
+    document.querySelector('.viewer-nav.next').addEventListener('click',()=>showImage(activeImage+1));
+    lightbox.addEventListener('click', e=>{if(e.target===lightbox)lightbox.close()});
+    document.addEventListener('keydown',e=>{if(!lightbox.open)return;if(e.key==='ArrowLeft')showImage(activeImage-1);if(e.key==='ArrowRight')showImage(activeImage+1)});
+  </script>
+</body>
+</html>
