@@ -71,6 +71,9 @@
     .foot h2{font-size:clamp(28px,4vw,50px);letter-spacing:-.06em;line-height:1.1;margin:9px 0}
     .foot p{color:#6e7069;font-size:14px;margin:8px 0 0}
     .foot .btn{background:var(--accent);color:#fff}
+    .contact-actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:12px}
+    .foot .btn-email{background:#fff;color:var(--ink);border:1px solid #cfcac0}
+    .foot .btn-email:hover{background:#f8f7f3}
     .legal{display:flex;justify-content:space-between;align-items:center;padding-top:26px;margin-top:46px;border-top:1px solid #d2cfc6;font-size:12px;color:#8c8d85}
     dialog{max-width:none;max-height:none;margin:0;padding:0;border:0;background:rgba(22,24,21,.97);color:white;position:fixed;inset:0;width:100vw;height:100dvh}
     dialog::backdrop{background:rgba(0,0,0,.85)}
@@ -147,7 +150,22 @@
       <section id="about" class="about" aria-labelledby="about-title"><h2 id="about-title">Немного<br />обо мне<span class="accent-word">.</span></h2><div><p class="about-copy">Привет! Я занимаюсь графическим дизайном и программированием. Мне интересно делать визуально понятные, аккуратные работы — от одной карточки товара до целого сайта.</p><p class="about-copy">Здесь собраны <strong>мои демонстрационные проекты и рекламные макеты</strong>. Портфолио будет пополняться новыми сайтами и Python-проектами.</p></div></section>
     </main>
   </div>
-  <footer class="foot" id="contact"><div class="container"><div class="foot-inner"><div><div class="eyebrow">Контакты</div><h2>Есть идея? Обсудим<span class="accent-word">.</span></h2><p>Пока здесь ссылка на GitHub. Позже добавим Telegram или почту.</p></div><a class="btn" href="https://github.com/kaifikigor" target="_blank" rel="noopener noreferrer">Мой GitHub <span class="arrow">↗</span></a></div><div class="legal"><span>© 2026 KAIFIK — портфолио</span><span>Создано на HTML, CSS и JavaScript</span></div></div></footer>
+  <footer class="foot" id="contact">
+    <div class="container">
+      <div class="foot-inner">
+        <div>
+          <div class="eyebrow">Контакты</div>
+          <h2>Есть идея? Обсудим<span class="accent-word">.</span></h2>
+          <p>Напиши мне в Telegram или на электронную почту — обсудим твой проект.</p>
+        </div>
+        <div class="contact-actions">
+          <a class="btn" href="https://t.me/kaifikigor" target="_blank" rel="noopener noreferrer" aria-label="Написать в Telegram: @kaifikigor">Telegram <span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="btn btn-email" href="mailto:igor.v.raizer@gmail.com" aria-label="Написать на почту: igor.v.raizer@gmail.com">Почта <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <div class="legal"><span>© 2026 KAIFIK — портфолио</span><span>Создано на HTML, CSS и JavaScript</span></div>
+    </div>
+  </footer>
   <dialog id="lightbox" aria-label="Просмотр работы"><div class="viewer"><button class="viewer-close" aria-label="Закрыть">×</button><button class="viewer-nav prev" aria-label="Предыдущая работа">‹</button><img alt="" id="big-image"/><button class="viewer-nav next" aria-label="Следующая работа">›</button><div class="viewer-label" id="viewer-label"></div></div></dialog>
   <script>
     const filters = document.querySelectorAll('.filter');
