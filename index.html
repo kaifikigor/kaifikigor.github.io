@@ -74,6 +74,11 @@
     .contact-actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:12px}
     .foot .btn-email{background:#fff;color:var(--ink);border:1px solid #cfcac0}
     .foot .btn-email:hover{background:#f8f7f3}
+    .foot .btn-copy{background:transparent;color:var(--ink);border:1px solid #cfcac0}
+    .foot .btn-copy:hover{background:#f8f7f3}
+    .email-address{font-size:13px;color:#575a54;margin:10px 0 0;text-align:right;user-select:text;overflow-wrap:anywhere}
+    .contact-right{display:flex;flex-direction:column;align-items:flex-end}
+    @media(max-width:600px){.contact-right{align-items:flex-start}.email-address{text-align:left}}
     .legal{display:flex;justify-content:space-between;align-items:center;padding-top:26px;margin-top:46px;border-top:1px solid #d2cfc6;font-size:12px;color:#8c8d85}
     dialog{max-width:none;max-height:none;margin:0;padding:0;border:0;background:rgba(22,24,21,.97);color:white;position:fixed;inset:0;width:100vw;height:100dvh}
     dialog::backdrop{background:rgba(0,0,0,.85)}
@@ -158,9 +163,13 @@
           <h2>Есть идея? Обсудим<span class="accent-word">.</span></h2>
           <p>Напиши мне в Telegram или на электронную почту — обсудим твой проект.</p>
         </div>
-        <div class="contact-actions">
-          <a class="btn" href="https://t.me/kaifikigor" target="_blank" rel="noopener noreferrer" aria-label="Написать в Telegram: @kaifikigor">Telegram <span class="arrow" aria-hidden="true">↗</span></a>
-          <a class="btn btn-email" href="mailto:igor.v.raizer@gmail.com" aria-label="Написать на почту: igor.v.raizer@gmail.com">Почта <span class="arrow" aria-hidden="true">↗</span></a>
+        <div class="contact-right">
+          <div class="contact-actions">
+            <a class="btn" href="https://t.me/kaifikigor" target="_blank" rel="noopener noreferrer" aria-label="Написать в Telegram: @kaifikigor">Telegram <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="btn btn-email" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=igor.v.raizer%40gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Написать на почту igor.v.raizer@gmail.com через Gmail">Написать на почту <span class="arrow" aria-hidden="true">↗</span></a>
+            <button class="btn btn-copy" type="button" id="copy-email" aria-label="Скопировать адрес электронной почты">Скопировать email</button>
+          </div>
+          <p class="email-address" id="email-text">igor.v.raizer@gmail.com</p>
         </div>
       </div>
       <div class="legal"><span>© 2026 KAIFIK — портфолио</span><span>Создано на HTML, CSS и JavaScript</span></div>
@@ -168,6 +177,27 @@
   </footer>
   <dialog id="lightbox" aria-label="Просмотр работы"><div class="viewer"><button class="viewer-close" aria-label="Закрыть">×</button><button class="viewer-nav prev" aria-label="Предыдущая работа">‹</button><img alt="" id="big-image"/><button class="viewer-nav next" aria-label="Следующая работа">›</button><div class="viewer-label" id="viewer-label"></div></div></dialog>
   <script>
+    const copyEmail = document.getElementById('copy-email');
+    copyEmail.addEventListener('click', async () => {
+      const address = 'igor.v.raizer@gmail.com';
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(address);
+        } else {
+          const selection = document.createRange();
+          selection.selectNodeContents(document.getElementById('email-text'));
+          const sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(selection);
+          if (!document.execCommand('copy')) throw new Error('Copy unavailable');
+          sel.removeAllRanges();
+        }
+        copyEmail.textContent = 'Скопировано ✓';
+      } catch (error) {
+        copyEmail.textContent = 'Выдели адрес ниже';
+      }
+      setTimeout(() => { copyEmail.textContent = 'Скопировать email'; }, 3000);
+    });
     const filters = document.querySelectorAll('.filter');
     const cards = document.querySelectorAll('.work');
     const lightbox = document.getElementById('lightbox');
